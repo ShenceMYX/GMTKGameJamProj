@@ -2,68 +2,115 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Common;
+using System;
 
 namespace Player
 {
-public class Barrier : MonoBehaviour
-{
-    // Start is called before the first frame update
-public Direction barrierDirection;
-public PoleStatus Required; 
-private PoleStatus Resisted;
-private GameObject Player;
-    void Start()
+    public class Barrier : MonoBehaviour
     {
-        Player = PlayerInputController.Instance.gameObject;
-        Resisted=(PoleStatus) (((int)Required+1)%2) ;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-         Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Player.transform.position));
-         //Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.center+" "+gameObject.GetComponent<BoxCollider2D>().bounds.size +" "+Player.transform.position);
-        if (gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Player.transform.position))
+        // Start is called before the first frame update
+        public Direction barrierDirection;
+        public PoleStatus Required; 
+        private PoleStatus Resisted;
+        private GameObject Player;
+        void Start()
         {
-            Debug.Log(barrierDirection==Direction.Left);
-            if (barrierDirection==Direction.Down)            
-            {
-                 if (PlayerInputController.Instance.DownPoleStatus==Required)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(0.0f,-10.0f);
-                 else  if (PlayerInputController.Instance.DownPoleStatus==Resisted)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(0.0f,10.0f);
-            }
+            Player = PlayerInputController.Instance.gameObject;
+            Resisted=(PoleStatus) (((int)Required+1)%2) ;
+        
+        }
 
-            if (barrierDirection==Direction.Up)            
+        // Update is called once per frame
+        void Update()
+        {
+             Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Player.transform.position));
+             //Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.center+" "+gameObject.GetComponent<BoxCollider2D>().bounds.size +" "+Player.transform.position);
+            if (gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Player.transform.position))
             {
-                 if (PlayerInputController.Instance.UpPoleStatus==Required)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(0.0f,10.0f);
-                else  if (PlayerInputController.Instance.UpPoleStatus==Resisted)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(0.0f,-10.0f);
-            }
+                Debug.Log(barrierDirection == Direction.Left);
+                if (barrierDirection == Direction.Down)         
+                {
+                    if (PlayerInputController.Instance.DownPoleStatus == Required)
+                    {
+                        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -10.0f);
+                        AppealingEffect();
+                    }
+                    else
+                    {
+                        if (PlayerInputController.Instance.DownPoleStatus == Resisted)
+                        {
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 10.0f);
+                        }
+                        CancelAppealing();
+                    }
+                }
 
-            if (barrierDirection==Direction.Left)            
-            {
-                Debug.Log("Left");
-                 if (PlayerInputController.Instance.LeftPoleStatus==Required)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(10.0f,0.0f);
-                    else  if (PlayerInputController.Instance.LeftPoleStatus==Resisted)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(-10.0f,0.0f);
-            } 
+                if (barrierDirection == Direction.Up)            
+                {
+                    if (PlayerInputController.Instance.UpPoleStatus == Required)
+                    {
+                        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 10.0f);
+                        AppealingEffect();
+                    }
+                    else
+                    {
+                        if (PlayerInputController.Instance.UpPoleStatus == Resisted)
+                        {
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -10.0f);
+                        }
+                        CancelAppealing();
+                    }
+                    
+                }
 
-            if (barrierDirection==Direction.Right)            
-            {
-                 if (PlayerInputController.Instance.RightPoleStatus==Required)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(-10.0f,0.0f);
-                if (PlayerInputController.Instance.RightPoleStatus==Resisted)                 
-                    Player.GetComponent<Rigidbody2D>().velocity=new Vector2(10.0f,0.0f);
-            } 
+                if (barrierDirection == Direction.Left)            
+                {
+                    Debug.Log("Left");
+                    if (PlayerInputController.Instance.LeftPoleStatus == Required)
+                    {
+                        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(10.0f, 0.0f);
+                        AppealingEffect();
+                    }
+                    else
+                    {
+                        if (PlayerInputController.Instance.LeftPoleStatus == Resisted)
+                        {
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(-10.0f, 0.0f);
+                        }
+                        CancelAppealing();
+                    }
+                    
+                } 
+
+                if (barrierDirection == Direction.Right)            
+                {
+                    if (PlayerInputController.Instance.RightPoleStatus == Required)
+                    {
+                        Player.GetComponent<Rigidbody2D>().velocity = new Vector2(-10.0f, 0.0f);
+                        AppealingEffect();
+                    }
+                    else
+                    {
+                        if (PlayerInputController.Instance.RightPoleStatus == Resisted)
+                        {
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(10.0f, 0.0f);
+                        }
+                        CancelAppealing();
+                    }
+
+                } 
             }
 
         
+        }
+
+        protected virtual void CancelAppealing()
+        {
+           
+        }
+
+        protected virtual void AppealingEffect() { }
     }
-}
 }
 
     
