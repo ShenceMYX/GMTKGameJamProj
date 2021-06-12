@@ -16,4 +16,14 @@ namespace Player
 		//无磁极
 		None
 	}
+	public enum Direction
+	{
+		//北极
+		Up,
+		//南极
+		Down,
+		//无磁极
+		Left,
+		Right
+	}
 }
