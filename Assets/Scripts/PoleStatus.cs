@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ns
+namespace Player
 {
 	/// <summary>
 	/// 南北极状态枚举
@@ -13,7 +13,7 @@ namespace ns
 		NorthPole,
 		//南极
 		SouthPole,
-		//啥也没有
+		//无磁极
 		None
 	}
 }

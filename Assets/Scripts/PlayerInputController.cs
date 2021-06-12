@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ns
+namespace Player
 {
 	/// <summary>
 	/// 玩家角色输入控制类
