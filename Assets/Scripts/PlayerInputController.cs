@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Common;
 
 namespace Player
 {
 	/// <summary>
 	/// 玩家角色输入控制类
 	/// </summary>
-	public class PlayerInputController : MonoBehaviour
+	public class PlayerInputController : MonoSingleton<PlayerInputController>
 	{
         public PoleStatus UpPoleStatus  = PoleStatus.None;
         public PoleStatus DownPoleStatus  = PoleStatus.None;
