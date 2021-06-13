@@ -13,7 +13,7 @@ namespace ns
 	{
         private void Update()
         {
-            Debug.Log(PlayerInputController.Instance.gameObject.name);
+            Debug.Log(gameObject.GetComponent<BoxCollider2D>().bounds.Contains(PlayerInputController.Instance.transform.position));
         }
     }
 }

@@ -8,20 +8,18 @@ namespace Player
 {
     public class Barrier : MonoBehaviour
     {
-        // Start is called before the first frame update
         public Direction barrierDirection;
         public PoleStatus Required; 
         private PoleStatus Resisted;
         private GameObject Player;
-        void Start()
+        private void Start()
         {
             Player = PlayerInputController.Instance.gameObject;
             Resisted=(PoleStatus) (((int)Required+1)%2) ;
         
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Update()
         {
              Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.Contains(Player.transform.position));
              //Debug.Log(gameObject.name+" "+gameObject.GetComponent<BoxCollider2D>().bounds.center+" "+gameObject.GetComponent<BoxCollider2D>().bounds.size +" "+Player.transform.position);
