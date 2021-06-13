@@ -12,6 +12,7 @@ namespace Player
         public PoleStatus Required; 
         private PoleStatus Resisted;
         private GameObject Player;
+        private bool cancelAppealOnce = true;
         private void Start()
         {
             Player = PlayerInputController.Instance.gameObject;
@@ -32,14 +33,18 @@ namespace Player
                     {
                         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -10.0f);
                         AppealingEffect();
+                        cancelAppealOnce = true;
                     }
                     else
                     {
                         if (PlayerInputController.Instance.DownPoleStatus == Resisted)
                         {
-                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 10.0f);
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.6f);
                         }
+                        if(cancelAppealOnce){
                         CancelAppealing();
+                        cancelAppealOnce = false;
+                        }
                     }
                 }
 
@@ -49,14 +54,18 @@ namespace Player
                     {
                         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 10.0f);
                         AppealingEffect();
+                         cancelAppealOnce = true;
                     }
                     else
                     {
                         if (PlayerInputController.Instance.UpPoleStatus == Resisted)
                         {
-                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -10.0f);
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, -0.6f);
                         }
+                        if(cancelAppealOnce){
                         CancelAppealing();
+                        cancelAppealOnce = false;
+                        }
                     }
                     
                 }
@@ -68,32 +77,41 @@ namespace Player
                     {
                         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(-10.0f, 0.0f);
                         AppealingEffect();
+                         cancelAppealOnce = true;
                     }
                     else
                     {
                         if (PlayerInputController.Instance.LeftPoleStatus == Resisted)
                         {
-                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(10.0f, 0.0f);
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0.6f, 0.0f);
                         }
+                         if(cancelAppealOnce){
                         CancelAppealing();
+                        cancelAppealOnce = false;
+                        }
                     }
                     
                 } 
 
                 if (barrierDirection == Direction.Right)            
                 {
-                    if (PlayerInputController.Instance.RightPoleStatus == Required)
+                     if (PlayerInputController.Instance.RightPoleStatus == Required)
                     {
+                       
                         Player.GetComponent<Rigidbody2D>().velocity = new Vector2(10.0f, 0.0f);
                         AppealingEffect();
+                         cancelAppealOnce = true;
                     }
                     else
                     {
                         if (PlayerInputController.Instance.RightPoleStatus == Resisted)
                         {
-                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(-10.0f, 0.0f);
+                            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(-0.6f, 0.0f);
                         }
+                         if(cancelAppealOnce){
                         CancelAppealing();
+                        cancelAppealOnce = false;
+                        }
                     }
 
                 } 
@@ -108,6 +126,11 @@ namespace Player
         }
 
         protected virtual void AppealingEffect() { }
+
+         void OnCollisionEnter2D(Collision2D other)
+        {
+            Debug.Log("ENter!");
+        }
     }
 }
 

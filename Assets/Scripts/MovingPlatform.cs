@@ -12,7 +12,7 @@ namespace Player
         public  float rangeMax;
         public float rangeMin;
         private bool isAppealed = false;
-        private float moveSpeed = 0.05f;
+        private float moveSpeed = 0.01f;
 
         protected override void AppealingEffect()
         {
@@ -36,17 +36,23 @@ namespace Player
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
                     transform.Translate(Vector3.right * moveSpeed);
-                    
-                  
-                    Debug.Log(transform.position);
                 }
                 else if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     transform.Translate(-Vector3.right * moveSpeed);
                 }
-            //transform.position=new Vector3(Mathf.Clamp(transform.position.x,rangeMin,rangeMax),transform.position.y,transform.position.z);
+
+                //if(transform.position.x>rangeMax) transform.position=new Vector3(rangeMax,transform.position.y,transform.position.z);
+
+             Vector3 temp=transform.position;
+             temp.x=Mathf.Clamp(transform.position.x,rangeMin,rangeMax);
+            transform.position=new Vector3(temp.x,transform.position.y,transform.position.z);
             }
             
+        }
+
+        private void OnCollisionEnter2D(Collision2D other){
+        Debug.Log("!!!!!!!!!!!!!11111110");
         }
     }
 }

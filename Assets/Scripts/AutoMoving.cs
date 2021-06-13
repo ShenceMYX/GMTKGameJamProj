@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Player;
 
 public class AutoMoving : MonoBehaviour
 {
@@ -9,16 +10,11 @@ public class AutoMoving : MonoBehaviour
     public float rangeMin;
     public float rangeMax;
 
-    void Start()
-    {
-       
-    }
 
-    // Update is called once per frame
     void Update()
     {
          transform.Translate(Vector3.right*speed*Time.deltaTime);
-        if(transform.position.x<rangeMin||transform.position.x>rangeMax)
+        if((transform.position.x<rangeMin)||(transform.position.x>rangeMax))
         {speed*=-1;}
     }
 }
