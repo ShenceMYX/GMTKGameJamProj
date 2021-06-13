@@ -528,7 +528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &399370580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -753,10 +753,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 631535042}
-  - component: {fileID: 631535041}
+  - component: {fileID: 506767343}
+  - component: {fileID: 506767342}
+  - component: {fileID: 506767341}
   m_Layer: 0
-  m_Name: building
+  m_Name: autoMoving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1103,7 +1104,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.69, y: 3.2}
+  m_Size: {x: 1.05, y: 1.05}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1317,8 +1318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101121109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2.41, z: 0}
+  m_LocalScale: {x: 0.425, y: 0.57802206, z: 1}
   m_Children: []
   m_Father: {fileID: 399370581}
   m_RootOrder: 2
@@ -1335,7 +1336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54885781ba0292a409151d17725a5de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrierDirection: 2
+  barrierDirection: 1
   Required: 1
 --- !u!61 &1101121112
 BoxCollider2D:
