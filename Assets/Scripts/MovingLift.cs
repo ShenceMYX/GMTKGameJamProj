@@ -52,12 +52,14 @@ namespace Player
             {
                 if(Vector3.Distance(transform.position, wayPoints[currentIndex].position) < 1f)
                 {
-                    currentIndex++;
-                    if (currentIndex > wayPoints.Length - 1)
+                    if (currentIndex >= wayPoints.Length - 1)
                     {
                         currentIndex = 0;
+                    }else{
+                    currentIndex++;
                     }
                     startTime = timeInterval + Time.time;
+                   
                 }
                 if (startTime < Time.time) 
                     transform.position = Vector3.MoveTowards(transform.position, wayPoints[currentIndex].position, moveSpeed);

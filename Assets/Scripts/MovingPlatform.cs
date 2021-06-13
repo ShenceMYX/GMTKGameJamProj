@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Common;
 
 namespace Player
 {
@@ -12,7 +13,7 @@ namespace Player
         public  float rangeMax;
         public float rangeMin;
         private bool isAppealed = false;
-        private float moveSpeed = 0.01f;
+        public float moveSpeed = 0.05f;
 
         protected override void AppealingEffect()
         {
